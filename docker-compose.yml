@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  postgres-paciente:
+    image: postgres:16
+    container_name: postgres-paciente
+    restart: always
+    environment:
+      POSTGRES_DB: geosus_paciente
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - paciente_pgdata:/var/lib/postgresql/data
+
+volumes:
+  paciente_pgdata:

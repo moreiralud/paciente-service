@@ -1,0 +1,4 @@
+INSERT INTO pacientes (nome, cpf, data_nascimento, endereco) VALUES
+('Ana Oliveira', '123.456.789-00', '1990-05-10', 'Rua das Flores, 123 - Aracaju/SE'),
+('Carlos Souza', '987.654.321-00', '1985-08-22', 'Avenida Brasil, 456 - Aracaju/SE'),
+('Fernanda Lima', '321.654.987-00', '2000-12-15', 'Travessa da Paz, 789 - Aracaju/SE');
