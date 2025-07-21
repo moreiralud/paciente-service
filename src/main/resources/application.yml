@@ -3,14 +3,14 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/geosus_paciente
+    url: jdbc:postgresql://postgres-paciente:5432/geosus_paciente
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
 
   jpa:
     hibernate:
@@ -26,10 +26,13 @@ spring:
     baseline-on-migrate: true
     locations: classpath:db/migration
 
+    springdoc:
+      swagger-ui:
+        path: /swagger-ui.html
+      api-docs:
+        path: /v3/api-docs
+
+
   jackson:
     serialization:
       INDENT_OUTPUT: true
-
-# (opcional) para permitir testes locais com CORS
-# cors:
-#   allowed-origins: "*"

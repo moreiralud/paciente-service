@@ -4,11 +4,13 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Paciente {
+
     private Long id;
     private String nome;
     private String cpf;

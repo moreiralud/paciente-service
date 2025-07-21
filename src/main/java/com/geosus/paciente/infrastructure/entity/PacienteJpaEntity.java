@@ -1,5 +1,6 @@
 package com.geosus.paciente.infrastructure.entity;
 
+import com.geosus.paciente.domain.Paciente;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,4 +26,25 @@ public class PacienteJpaEntity {
     private LocalDate dataNascimento;
 
     private String endereco;
+
+    public static PacienteJpaEntity fromDomain(Paciente paciente) {
+        return PacienteJpaEntity.builder()
+                .id(paciente.getId())
+                .nome(paciente.getNome())
+                .cpf(paciente.getCpf())
+                .dataNascimento(paciente.getDataNascimento())
+                .endereco(paciente.getEndereco())
+                .build();
+
+    }
+
+    public Paciente toDomain() {
+        return new Paciente(
+                this.id,
+                this.nome,
+                this.cpf,
+                this.dataNascimento,
+                this.endereco
+        );
+    }
 }
