@@ -16,4 +16,7 @@ public class Paciente {
     private String cpf;
     private LocalDate dataNascimento;
     private String endereco;
+
+    public Paciente(String lud, String number, String date, String endereco) {
+    }
 }

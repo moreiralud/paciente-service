@@ -2,7 +2,7 @@ package com.geosus.paciente.main;
 
 import com.geosus.paciente.application.CadastrarPacienteUseCase;
 import com.geosus.paciente.application.ListarTodosPacientesUseCase;
-import com.geosus.paciente.domain.PacienteStorage;
+import com.geosus.paciente.domain.PacienteRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class PacienteUseCaseConfig {
 
     @Bean
-    public CadastrarPacienteUseCase cadastrarPacienteUseCase(PacienteStorage storage) {
+    public CadastrarPacienteUseCase cadastrarPacienteUseCase(PacienteRepository storage) {
         return new CadastrarPacienteUseCase(storage);
     }
 
     @Bean
-    public ListarTodosPacientesUseCase listarTodosPacientesUseCase(PacienteStorage storage) {
+    public ListarTodosPacientesUseCase listarTodosPacientesUseCase(PacienteRepository storage) {
         return new ListarTodosPacientesUseCase(storage);
     }
 }

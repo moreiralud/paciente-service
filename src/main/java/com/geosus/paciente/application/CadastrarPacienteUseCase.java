@@ -1,13 +1,13 @@
 package com.geosus.paciente.application;
 
 import com.geosus.paciente.domain.Paciente;
-import com.geosus.paciente.domain.PacienteStorage;
+import com.geosus.paciente.domain.PacienteRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CadastrarPacienteUseCase {
 
-    private final PacienteStorage storage;
+    private final PacienteRepository storage;
 
     public Paciente execute(Paciente paciente) {
         storage.buscarPorCpf(paciente.getCpf()).ifPresent(p -> {

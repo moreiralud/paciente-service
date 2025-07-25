@@ -1,7 +1,7 @@
 package com.geosus.paciente.infrastructure.gateway;
 
 import com.geosus.paciente.domain.Paciente;
-import com.geosus.paciente.domain.PacienteStorage;
+import com.geosus.paciente.domain.PacienteRepository;
 import com.geosus.paciente.infrastructure.entity.PacienteJpaEntity;
 import com.geosus.paciente.infrastructure.repository.SpringPacienteJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @Primary
 @RequiredArgsConstructor
-public class PacienteStorageJpaGateway implements PacienteStorage {
+public class PacienteRepositoryJpaGateway implements PacienteRepository {
 
     private final SpringPacienteJpaRepository repository;
 
