@@ -1,64 +1,65 @@
-# 🧍 GeoSUS - Paciente Service
 
-Este microsserviço faz parte do sistema **GeoSUS - Fila Única com Geolocalização para o SUS**. Ele é responsável pelo gerenciamento de pacientes, permitindo o cadastro, a listagem e a consulta por CPF.
+O projeto segue os princípios da **Arquitetura Limpa** com as seguintes camadas:
 
-## 📌 Funcionalidades
+- `domain`: entidade `Paciente` e contrato `PacienteRepository`.
+- `application`: casos de uso (ex: `CadastrarPacienteUseCase`, `ListarTodosPacientesUseCase`).
+- `adapter`: controller REST e adaptadores de entrada/saída.
+- `infrastructure`: JPA, Flyway, banco de dados e configurações.
 
-- Cadastro de pacientes com nome, CPF e localização.
-- Garantia de CPF único no sistema.
-- Consulta de pacientes por CPF.
-- Listagem de todos os pacientes cadastrados.
-- Integração com o `fila-service` para direcionamento com base na localização.
+---
 
-## 🧱 Arquitetura
+## 🌐 Endpoints REST
 
-[controller] → [application] → [domain] ←→ [infrastructure]
+| Método | Endpoint                         | Descrição                     |
+|--------|----------------------------------|-------------------------------|
+| `POST` | `/pacientes`                     | Cadastra um novo paciente     |
+| `GET`  | `/pacientes/por-cpf?cpf={cpf}`   | Consulta paciente por CPF     |
+| `GET`  | `/pacientes`                     | Lista todos os pacientes      |
 
+---
 
-O projeto segue a divisão:
-- `domain`: entidades e regras de negócio.
-- `application`: casos de uso.
-- `adapter`: interfaces REST e persistência.
-- `infrastructure`: configurações, banco e persistência JPA.
+## 🧪 Testes
 
-## 🌐 Endpoints
+- Frameworks: **JUnit 5** + **Mockito**
+- Estratégia: foco em testar **casos de uso**, **controller** e **repositórios**
+- Relatórios: gerados automaticamente em  
+  `target/site/jacoco/index.html`
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| `POST` | `/pacientes` | Cadastra novo paciente |
-| `GET`  | `/pacientes/por-cpf?cpf={cpf}` | Consulta paciente por CPF |
-| `GET`  | `/pacientes` | Lista todos os pacientes |
+---
 
-## 💡 Exemplo de payload
+## 📈 Cobertura de Testes
+
+- ✅ **Cobertura efetiva: 82%**
+- 🎯 A cobertura é focada nas **camadas com lógica de negócio**:
+    - `domain`
+    - `application`
+    - `adapter.controller`
+    - `infrastructure.repository` e `gateway`
+- 🛑 **Classes excluídas deliberadamente do escopo de teste**:
+    - `PacienteServiceApplication.java`
+    - `SwaggerConfig.java`
+    - `PacienteUseCaseConfig.java`
+    - Pacotes `entity` e `mapper`
+
+---
+
+## 💾 Banco de Dados
+
+- Banco: **PostgreSQL**
+- Versionamento com **Flyway**
+- Scripts localizados em:  
+  `src/main/resources/db/migration`
+
+---
+
+## 💡 Exemplo de Payload
 
 ```json
 {
   "nome": "Maria da Silva",
   "cpf": "12345678900",
+  "dataNascimento": "1990-01-01",
+  "endereco": "Rua Exemplo, 123",
   "latitude": -10.9472,
   "longitude": -37.0731
 }
-
-
-🧪 Testes
-Framework: JUnit 5 + Mockito.
-
-Cobertura mínima de 80% validada com JaCoCo.
-
-Relatórios gerados na pasta /target/site/jacoco.
-
-🐘 Banco de Dados
-PostgreSQL com versionamento via Flyway.
-
-Scripts localizados em resources/db/migration.
-
-
-🧪 Política de Testes e Cobertura
-
-- Cobertura Jacoco: 82% (real)
-- Cobertura medida apenas sobre: `domain`, `application`, `repository` e `controller`
-- Classes excluídas por não conterem lógica:
-  - `PacienteServiceApplication.java`
-  - `SwaggerConfig.java`
-  - `PacienteUseCaseConfig.java`
-  - Mappers e Entities simples
