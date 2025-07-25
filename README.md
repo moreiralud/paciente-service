@@ -51,3 +51,14 @@ Relatórios gerados na pasta /target/site/jacoco.
 PostgreSQL com versionamento via Flyway.
 
 Scripts localizados em resources/db/migration.
+
+
+🧪 Política de Testes e Cobertura
+
+- Cobertura Jacoco: 82% (real)
+- Cobertura medida apenas sobre: `domain`, `application`, `repository` e `controller`
+- Classes excluídas por não conterem lógica:
+  - `PacienteServiceApplication.java`
+  - `SwaggerConfig.java`
+  - `PacienteUseCaseConfig.java`
+  - Mappers e Entities simples
